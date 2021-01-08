@@ -1,0 +1,172 @@
+﻿<Window x:Class="ContinousAquisition.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ContinousAquisition" 
+        mc:Ignorable="d"
+        Title="Results DAQ" Height="600" Width="1000"
+        Icon="icon.ico" Closed="Window_Closed">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="gd" Grid.Column="0" Grid.Row="0"> 
+            <Canvas x:Name="canGraph" Width="{Binding ElementName=gd, Path=ActualWidth}"
+      Height="{Binding ElementName=gd, Path=ActualHeight}" 
+                    Background="White" VerticalAlignment="Top" HorizontalAlignment="Left"
+                    Loaded="CanGraph_Loaded" SizeChanged="CanGraph_SizeChanged"> 
+
+            </Canvas>
+        </Grid>         
+        <TabControl Grid.Row="0" Grid.Column="1">
+            <TabItem Header="Measurement" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" /> 
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20pt"/>
+                        <RowDefinition Height="20pt"/>
+                        <RowDefinition Height="20pt"/>
+                        <RowDefinition Height="20pt"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Button Name="Run" Grid.Row="0" Grid.Column="0" Content="Run" Click="Run_Click"   Margin="1,1,1,1" />
+                    <Button Name="Stop" Grid.Row="0" Grid.Column="2" Content="Stop" Click="Stop_Click" Margin="1,1,1,1" />
+                    
+                    <Label Content="Name" Grid.Column="0" Grid.Row="1" Margin="1,1,1,1"   />
+                    <TextBox Name="Output_File_TextBox" Text="{Binding Output_File, Mode =TwoWay}" Grid.Row="1" Grid.Column="1" Margin="1,1,1,1"  />
+
+                    <Label Content="Output data format" Grid.Column="0" Grid.Row="2" />
+                    <ComboBox Name="Output_Data_Format_Combobox" Grid.Column="1" Grid.Row="2" 
+                              IsSynchronizedWithCurrentItem="True"
+                              ItemsSource="{Binding Path=Output_Data_Format_Combobox_Items, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" 
+                              SelectedItem="{Binding Path=Input_Channel_Value_Save_Format, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/> 
+
+                    <Label Content="Comment" Grid.Column="0" Grid.Row="3" Margin="1,1,1,1" />
+                    <TextBox Name="Comment" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" AcceptsReturn="True" TextWrapping="Wrap" Margin="1,1,1,1" />
+
+                    <GroupBox Header="Voltage settings" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions >
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20pt" />
+                                <RowDefinition Height="20pt" />
+                                <RowDefinition Height="20pt" />
+                                <RowDefinition Height="20pt" />
+                            </Grid.RowDefinitions>
+                            <Label Content="Reverse voltage (V)" Grid.Column="0"   Grid.Row="0"  Margin="1,1,1,1"  />
+                            <TextBox Name="Reverse_Voltage_TextBox"  Text="{Binding Reverse_Voltage, Mode =TwoWay}" Grid.Column="1" Grid.Row="0"  Margin="1,1,1,1" TextChanged="Reverse_Voltage_TextBox_TextChanged"/>
+
+                            <Label Content="Pulse voltage (V)" Grid.Column="0"   Grid.Row="1"  Margin="1,1,1,1" />
+                            <TextBox Name="Pulse_Voltage_TextBox" Text="{Binding Pulse_Voltage, Mode =TwoWay}" Grid.Column="1" Grid.Row="1"  Margin="1,1,1,1"/>
+                            
+                        <Label Content="Pulse width (s)" Grid.Column="0"   Grid.Row="2" />
+                            <TextBox Name="Pulse_Width_TextBox" Text="{Binding Pulse_Width, Mode =TwoWay}" Grid.Column="1" Grid.Row="2"  Margin="1,1,1,1"/>
+                            <ToggleButton Name="ApplyReverseVoltage_ToogleButton" Content="Apply reverse voltage" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Margin="1,1,1,1" Click="ApplyReverseVoltage_ToogleButton_Click"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Aquisition settings"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6">
+                        <Grid>
+                            <Grid.ColumnDefinitions >
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20pt" />
+                                <RowDefinition Height="20pt" />
+                                <RowDefinition Height="20pt" />
+                                <RowDefinition Height="20pt" />
+                            </Grid.RowDefinitions>
+                            <Label Content="Sampling rate (Hz)" Grid.Column="0"   Grid.Row="0"  Margin="1,1,1,1"  />
+                            <TextBox Name="Sampling_Rate_TextBox" Text="{Binding Sampling_Rate, Mode =TwoWay}" Grid.Column="1" Grid.Row="0" Margin="1,1,1,1" />
+                            <Label Content="Buffer size" Grid.Column="0"   Grid.Row="1" />
+                            <TextBox Name="Buffer_Size_TextBox" Text="{Binding BufferSize, Mode =TwoWay}" Grid.Column="1" Grid.Row="1" Margin="1,1,1,1"/>
+                            <Label Content="Number of samples" Grid.Column="0"   Grid.Row="2" Margin="1,1,1,1"/>
+                            <ComboBox Name="Number_Of_Samples_ComboBox" IsEditable="True" Grid.Column="1" Grid.Row="2" Margin="1,1,1,1" 
+                                      SelectedItem="{Binding NumberOfSamples, Mode =TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      ItemsSource="{Binding Number_Of_Samples_ComboBox_Items, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      IsSynchronizedWithCurrentItem="True"/>
+                            <Label Content="Number of measurements" Grid.Column="0" Grid.Row="3" Margin="1,1,1,1" />
+                            <ComboBox Name="NumberOfMeasurements_ComboBox" Grid.Column="1" Grid.Row="3" IsEditable="True" Margin="1,1,1,1" 
+                                      IsSynchronizedWithCurrentItem="True"  
+                                      SelectedItem="{Binding NumberOfMeasurements, Mode =TwoWay, UpdateSourceTrigger=PropertyChanged }" 
+                                      ItemsSource="{Binding NumberOfMeasurements_ComboBox_Items,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"  />
+                        </Grid>
+                    </GroupBox> 
+                </Grid>
+            </TabItem> 
+            <TabItem Header="Channel settings">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" /> 
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20pt"/>
+                        <RowDefinition Height="20pt"/>
+                        <RowDefinition Height="20pt"/>
+                        <RowDefinition Height="20pt"/>
+                        <RowDefinition Height="20pt"/>
+                        <RowDefinition Height="20pt"/>
+                        <RowDefinition Height="20pt"/>
+                        <RowDefinition Height="20pt"/>
+                        <RowDefinition Height="20pt"/>
+                        <RowDefinition Height="20pt"/>
+                        <RowDefinition Height="*"/> 
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Input channel" Grid.Row="0" Grid.Column="0" Margin="1,1,1,1" />
+                    <TextBox Name="Input_channel" Grid.Row="0" Grid.Column="1" Text="{Binding Input_Channel, Mode =TwoWay}" Margin="1,1,1,1"   />
+
+                    <Label Content="Max voltage (V)" Grid.Row="1" Grid.Column="0" Margin="1,1,1,1"  />
+                    <TextBox Name="InputChannel_maxVoltage" Grid.Row="1" Grid.Column="1"  Text="{Binding Input_Channel_MaxVoltage, Mode =TwoWay}" Margin="1,1,1,1"  />
+
+                    <Label Content="Min voltage (V)" Grid.Row="2" Grid.Column="0" Margin="1,1,1,1" />
+                    <TextBox Name="InputChannel_minVoltage" Grid.Row="2" Grid.Column="1" Text="{Binding Input_Channel_MinVoltage, Mode =TwoWay}" Margin="1,1,1,1" />
+ 
+                    
+                    <Label Content="Output channel" Grid.Row="4" Grid.Column="0" Margin="1,1,1,1" />
+                    <TextBox Name="Output_channel" Grid.Row="4" Grid.Column="1" Text="{Binding Output_Channel, Mode =TwoWay}"  Margin="1,1,1,1" />
+                    
+                    <Label Content="Max voltage (V)" Grid.Row="5" Grid.Column="0" Margin="1,1,1,1"  />
+                    <TextBox Name="OutputChannel_maxVoltage" Grid.Row="5" Grid.Column="1" Text="{Binding Output_Channel_MaxVoltage, Mode =TwoWay}"  Margin="1,1,1,1"  />
+                    <Label Content="Min voltage (V)" Grid.Row="6" Grid.Column="0"  Margin="1,1,1,1"/>
+
+                    <TextBox Name="OutputChannel_minVoltage" Grid.Row="6" Grid.Column="1" Text="{Binding Output_Channel_MinVoltage, Mode =TwoWay}" Margin="1,1,1,1"  />
+ 
+                    <Label Content="Aq. trigger channel" Grid.Row="8" Grid.Column="0" Margin="1,1,1,1"  />
+                    <TextBox Name="Trigger_Channel" Grid.Row="8" Grid.Column="1" Text="{Binding Trigger_Channel, Mode =TwoWay}"  Margin="1,1,1,1" />
+                    <Label Content="Sync channel" Grid.Row="9" Grid.Column="0"  Margin="1,1,1,1"/>
+                    <TextBox Name="Sync_Channel" Grid.Row="9" Grid.Column="1" Text="{Binding Sync_Channel, Mode =TwoWay}"  Margin="1,1,1,1" />
+                    <Image Source="scheme.png" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" />
+ 
+                </Grid>
+            </TabItem>
+            <TabItem Header="Log" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/> 
+                    </Grid.RowDefinitions>
+                    <TextBlock Name="LogTextBlock" Text="" IsEnabled="True" IsManipulationEnabled="True" />
+                </Grid> 
+            </TabItem>
+        </TabControl>
+ 
+    </Grid>
+</Window>
