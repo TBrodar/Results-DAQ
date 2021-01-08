@@ -1,0 +1,1 @@
+![Screen shot](https://github.com/TBrodar/Results-DAQ/blob/main/scheme.png)
