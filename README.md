@@ -1,1 +1,1 @@
-![Screen shot](https://github.com/TBrodar/Results-DAQ/blob/main/Results DAQ.png)
+![Screen shot](https://github.com/TBrodar/Results-DAQ/blob/main/ResultsDAQ.png)
