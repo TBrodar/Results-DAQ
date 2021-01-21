@@ -75,22 +75,13 @@ namespace ContinousAquisition
                 List_Instance.Add(Object_To_Add);
             } 
         }
+
         public MainWindow()
         {
             InitializeComponent();
 
             // Load parameters
-            if (File.Exists( System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Parameters_SaveFile)) )
-            {
-                try
-                {
-
-                Parameters_Instance = JsonConvert.DeserializeObject<Parameters>(File.ReadAllText(Parameters_SaveFile));
-                } catch (Exception)
-                {
-                    MessageBox.Show("Parameters.json file is not properly loaded.");
-                }
-            }
+            Load_Parameters_func(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Parameters_SaveFile));
             // WPF binding
             this.DataContext = Parameters_Instance;
             WindowInstance = this;
@@ -117,18 +108,7 @@ namespace ContinousAquisition
             //_timer_Graph_Test = new Timer(AddPoint, null, 1, 1);
 
         }
-
-        //int _n = 0;
-        //delegate void Add_Point_Delegate(double x, double y);
-        //private void AddPoint(Object state)
-        //{
-        //    Thread.Sleep(10);
-        //    MainWindow.WindowInstance.Dispatcher.BeginInvoke(new Add_Point_Delegate(GraphInstance.Add_Point),
-        //                              _n, (1.0 - Math.Exp(-_n*0.01) - 0.5)*0.01 );
-        //    _n += 1;
-        //    _timer_Graph_Test.Change(1, 1);
-        //}
-
+        
         private void Redraw_Graph(Object state)
         {
             Thread.Sleep(10);
@@ -404,11 +384,7 @@ namespace ContinousAquisition
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            using (System.IO.StreamWriter file =
-            new System.IO.StreamWriter(Parameters_SaveFile))
-            {
-                file.Write(JsonConvert.SerializeObject(Parameters_Instance, Formatting.Indented));
-            } 
+            Save_Parameters_func(Parameters_SaveFile);
         }
 
         private void ApplyReverseVoltage_ToogleButton_Click(object sender, RoutedEventArgs e)
@@ -477,7 +453,89 @@ namespace ContinousAquisition
         {
             ApplyReverseVoltage_ToogleButton.IsChecked = false;
         }
-         
-    }
+        
+        private void Measuremets_Load_Save_Parameters_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.Load_Save_Parameters.ContextMenu.IsOpen == false )
+            {
+                try
+                {
+                    this.Load_Save_Parameters.ContextMenu.Placement       = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+                    this.Load_Save_Parameters.ContextMenu.PlacementTarget = Load_Save_Parameters;
+                    this.Load_Save_Parameters.ContextMenu.IsOpen          = true;
+                }
+                catch { } 
+            }
+            else
+            { this.Load_Save_Parameters.ContextMenu.IsOpen = false; } 
+        }
 
+
+        public void Load_Parameters_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog()
+            {
+                Filter = "json (.*json)|*.json|All(*.*)|*",
+                Multiselect = false
+            }; 
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string directory = System.IO.Path.GetDirectoryName(openFileDialog.FileName);
+                string name = System.IO.Path.GetFileNameWithoutExtension(openFileDialog.FileName);
+
+                Load_Parameters_func(openFileDialog.FileName);
+            }
+        }
+
+        private void Load_Parameters_func(string FileName)
+        {
+            if (File.Exists(FileName))
+            {
+                try
+                {
+
+                    Parameters_Instance = JsonConvert.DeserializeObject<Parameters>(File.ReadAllText(FileName));
+                    this.DataContext = Parameters_Instance;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Parameters.json file is not properly loaded.");
+                } 
+            }
+        }
+        private void Save_Parameters_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog()
+            {
+                Filter = "json (.*json)|*.json|All(*.*)|*"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                string directory = System.IO.Path.GetDirectoryName(saveFileDialog.FileName);
+                string name = System.IO.Path.GetFileNameWithoutExtension(saveFileDialog.FileName);
+
+                Save_Parameters_func(System.IO.Path.Combine(directory, name + ".json"));
+            }
+        }
+
+        public void Save_Parameters_func(string FileName)
+        {
+            if (!(Number_Of_Samples_ComboBox.Items.Contains(Number_Of_Samples_ComboBox.Text))){
+                Parameters_Instance.Number_Of_Samples_ComboBox_Items.Add(Number_Of_Samples_ComboBox.Text);
+                Parameters_Instance.NumberOfSamples = Number_Of_Samples_ComboBox.Text;
+            }
+            if (!(NumberOfMeasurements_ComboBox.Items.Contains(NumberOfMeasurements_ComboBox.Text)))
+            {
+                Parameters_Instance.NumberOfMeasurements_ComboBox_Items.Add(NumberOfMeasurements_ComboBox.Text);
+                Parameters_Instance.NumberOfMeasurements = NumberOfMeasurements_ComboBox.Text;
+            }
+            using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(FileName))
+            {
+                file.Write(JsonConvert.SerializeObject(Parameters_Instance, Formatting.Indented));
+            }
+        } 
+    } 
 }

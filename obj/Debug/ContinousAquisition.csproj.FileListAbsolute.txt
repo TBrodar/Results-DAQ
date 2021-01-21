@@ -115,3 +115,7 @@ B:\VisualStudioProjects\Continous aquisition3\ContinousAquisition\obj\Debug\Cont
 B:\VisualStudioProjects\Continous aquisition3\ContinousAquisition\obj\Debug\ContinousAquisition.csproj.CopyComplete
 B:\VisualStudioProjects\Continous aquisition3\ContinousAquisition\obj\Debug\ContinousAquisition.exe
 B:\VisualStudioProjects\Continous aquisition3\ContinousAquisition\obj\Debug\ContinousAquisition.pdb
+B:\VisualStudioProjects\Continous aquisition3\ContinousAquisition\obj\Debug\Results-Bot(embeded for scripts)\App.g.cs
+B:\VisualStudioProjects\Continous aquisition3\ContinousAquisition\obj\Debug\Results-Bot(embeded for scripts)\MainWindow.g.cs
+B:\VisualStudioProjects\Continous aquisition3\ContinousAquisition\obj\Debug\ContinousAquisition_Content.g.cs
+B:\VisualStudioProjects\Continous aquisition3\ContinousAquisition\obj\Debug\GeneratedInternalTypeHelper.g.cs

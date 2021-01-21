@@ -81,6 +81,21 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Graph.cs" />
+    <Compile Include="Results-Bot%28embeded for scripts%29\Ag488.cs" />
+    <Compile Include="Results-Bot%28embeded for scripts%29\App.xaml.cs" />
+    <Compile Include="Results-Bot%28embeded for scripts%29\AppClass.cs" />
+    <Compile Include="Results-Bot%28embeded for scripts%29\CustomCommands.cs" />
+    <Compile Include="Results-Bot%28embeded for scripts%29\GPIBClass.cs" />
+    <Compile Include="Results-Bot%28embeded for scripts%29\KeyboardClass.cs" />
+    <Compile Include="Results-Bot%28embeded for scripts%29\MainWindow.xaml.cs" />
+    <Compile Include="Results-Bot%28embeded for scripts%29\MouseClass.cs" />
+    <Compile Include="Results-Bot%28embeded for scripts%29\MyCompletionData.cs" />
+    <Compile Include="Results-Bot%28embeded for scripts%29\OCRClass.cs" />
+    <Compile Include="Results-Bot%28embeded for scripts%29\PythonCodeEditClass.cs" />
+    <Compile Include="Results-Bot%28embeded for scripts%29\ScreenClass.cs" />
+    <Compile Include="Results-Bot%28embeded for scripts%29\TabItemAndEngineClass.cs" />
+    <Compile Include="Results-Bot%28embeded for scripts%29\USBClass.cs" />
+    <Compile Include="Results-Bot%28embeded for scripts%29\VISAClass.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -93,6 +108,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Results-Bot%28embeded for scripts%29\App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Results-Bot%28embeded for scripts%29\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NI_DAQ.cs" />
@@ -119,6 +142,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Results-Bot%28embeded for scripts%29\App.config" />
+    <None Include="Results-Bot%28embeded for scripts%29\ICSharpCode.PythonBinding.Resources.Python.xshd" />
+    <None Include="Results-Bot%28embeded for scripts%29\packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icon.ico" />
@@ -131,7 +157,21 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="scheme.png" />
+    <Resource Include="scheme.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Results-Bot%28embeded for scripts%29\x64\liblept172.dll" />
+    <Content Include="Results-Bot%28embeded for scripts%29\x64\libtesseract304.dll" />
+    <Content Include="Results-Bot%28embeded for scripts%29\x86\liblept172.dll" />
+    <Content Include="Results-Bot%28embeded for scripts%29\x86\libtesseract304.dll" />
+    <Resource Include="Results-Bot%28embeded for scripts%29\icon.ico" />
+    <Content Include="Results-Bot%28embeded for scripts%29\ResultsBot.csproj" />
+    <Content Include="Results-Bot%28embeded for scripts%29\ResultsBot.csproj.user" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Results-Bot%28embeded for scripts%29\NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
