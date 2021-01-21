@@ -126,7 +126,7 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Scripts" >
+                <!--<TabItem Header="Scripts" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -150,7 +150,7 @@
                         <Button Name="Load_Save_Scripts" Grid.Column="1" Grid.Row="0" Content="+" Margin="1,1,1,1"  >
                             <Button.ContextMenu>
                                 <ContextMenu  >
-                                    <!-- Closed="DLTSFileContextMenu_Closed"  Click="" -->
+                                    --><!-- Closed="DLTSFileContextMenu_Closed"  Click="" --><!--
                                     <MenuItem Name="Save_Script" Header="Save script" />
                                     <MenuItem Name="Load_Script" Header="Load script" />
                                 </ContextMenu>
@@ -164,12 +164,9 @@
                               ItemsSource  = "{Binding Path=Output_Data_Format_Combobox_Items, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" 
                               SelectedItem = "{Binding Path=Input_Channel_Value_Save_Format,   Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Margin="1,1,1,1" />
 
-                    <TextBox Grid.Column="0"       Grid.ColumnSpan="2" Grid.Row="2"  ></TextBox>
-                    <!--<Frame  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" x:Name="CenterFrame" VerticalAlignment="Stretch" VerticalContentAlignment="Center"
-                            HorizontalAlignment="Stretch"
-                            HorizontalContentAlignment="Center" Source="Results-Bot(embeded for scripts)/MainWindow.xaml" Background="DarkGray" />-->
+                    <TextBox Grid.Column="0"       Grid.ColumnSpan="2" Grid.Row="2"  ></TextBox> 
                 </Grid>
-            </TabItem>
+            </TabItem>--> 
             <TabItem Header="Channel settings">
                 <Grid>
                     <Grid.ColumnDefinitions>

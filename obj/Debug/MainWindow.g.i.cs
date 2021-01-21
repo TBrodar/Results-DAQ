@@ -186,126 +186,6 @@ namespace ContinousAquisition
 #line default
 #line hidden
 
-
-#line 140 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.Button Run_Script;
-
-#line default
-#line hidden
-
-
-#line 149 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.Button Stop_Script;
-
-#line default
-#line hidden
-
-
-#line 150 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.Button Load_Save_Scripts;
-
-#line default
-#line hidden
-
-
-#line 154 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.MenuItem Save_Script;
-
-#line default
-#line hidden
-
-
-#line 155 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.MenuItem Load_Script;
-
-#line default
-#line hidden
-
-
-#line 162 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.ComboBox Script_Combobox;
-
-#line default
-#line hidden
-
-
-#line 194 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.TextBox Input_channel;
-
-#line default
-#line hidden
-
-
-#line 197 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.TextBox InputChannel_maxVoltage;
-
-#line default
-#line hidden
-
-
-#line 200 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.TextBox InputChannel_minVoltage;
-
-#line default
-#line hidden
-
-
-#line 204 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.TextBox Output_channel;
-
-#line default
-#line hidden
-
-
-#line 207 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.TextBox OutputChannel_maxVoltage;
-
-#line default
-#line hidden
-
-
-#line 210 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.TextBox OutputChannel_minVoltage;
-
-#line default
-#line hidden
-
-
-#line 213 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.TextBox Trigger_Channel;
-
-#line default
-#line hidden
-
-
-#line 215 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.TextBox Sync_Channel;
-
-#line default
-#line hidden
-
-
-#line 227 "..\..\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.TextBlock LogTextBlock;
-
-#line default
-#line hidden
-
         private bool _contentLoaded;
 
         /// <summary>
@@ -518,6 +398,16 @@ namespace ContinousAquisition
             }
             this._contentLoaded = true;
         }
+
+        internal System.Windows.Controls.TextBox Input_channel;
+        internal System.Windows.Controls.TextBox InputChannel_maxVoltage;
+        internal System.Windows.Controls.TextBox InputChannel_minVoltage;
+        internal System.Windows.Controls.TextBox Output_channel;
+        internal System.Windows.Controls.TextBox OutputChannel_maxVoltage;
+        internal System.Windows.Controls.TextBox OutputChannel_minVoltage;
+        internal System.Windows.Controls.TextBox Trigger_Channel;
+        internal System.Windows.Controls.TextBox Sync_Channel;
+        internal System.Windows.Controls.TextBlock LogTextBlock;
     }
 }
 
